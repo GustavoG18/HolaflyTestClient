@@ -53,19 +53,12 @@ const Login = () => {
     onSubmit: handleSubmit,
   });
 
-  // const validationSchema = Yup.object({
-  //   email: Yup.string()
-  //     .email("Invalid email format")
-  //     .required("The email is required"),
-  //   password: Yup.string().required("The password is required"),
-  // });
-
   return (
     <>
       <Notification
         notificationData={notificationData}
         setNotificationData={() => {
-          setNotificationData((prev) => {
+          setNotificationData((prev: any) => {
             return {
               ...prev,
               show: false,
@@ -104,7 +97,7 @@ const Login = () => {
                         type="email"
                         autoComplete="email"
                         required
-                        className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-2"
                         onChange={formik.handleChange}
                         value={formik.values.email}
                       />
@@ -125,7 +118,7 @@ const Login = () => {
                         type="password"
                         autoComplete="current-password"
                         required
-                        className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-2"
                         onChange={formik.handleChange}
                         value={formik.values.password}
                       />
@@ -138,7 +131,7 @@ const Login = () => {
                         id="remember-me"
                         name="remember-me"
                         type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-rose-600 focus:ring-rose-600"
+                        className="h-4 w-4 rounded border-gray-300 text-rose-600 focus:ring-rose-600 accent-rose-600"
                       />
                       <label
                         htmlFor="remember-me"
