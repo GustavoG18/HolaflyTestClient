@@ -1,11 +1,12 @@
-import "./App.css";
+import { Router } from "./routes/index.jsx";
+import "./tailwind.css";
 
-function App() {
+const App = () => {
   return (
     <>
-      <h1>Hola mundo</h1>
+      <Router />
     </>
   );
-}
+};
 
 export default App;
