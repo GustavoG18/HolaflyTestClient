@@ -2,6 +2,8 @@ import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavContext } from "../context/NavContext";
 import { useState } from "react";
+import { useUserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: "Active & Pendings", current: true },
@@ -14,7 +16,15 @@ function classNames(...classes: string[]) {
 
 const Navbar = () => {
   const { setNav } = useNavContext();
+  const { setUser } = useUserContext();
   const [navigationState, setNavigationState] = useState(navigation);
+  const navigate = useNavigate();
+
+  const handleClickLogOut = () => {
+    setUser({});
+    localStorage.setItem("userData", JSON.stringify({}));
+    navigate("/");
+  };
 
   return (
     <>
@@ -77,6 +87,7 @@ const Navbar = () => {
                     <button
                       type="submit"
                       className="flex w-full justify-center rounded-md bg-rose-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      onClick={handleClickLogOut}
                     >
                       Log out
                     </button>
@@ -141,6 +152,7 @@ const Navbar = () => {
                   <button
                     type="submit"
                     className="flex w-80 justify-center rounded-md bg-rose-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    onClick={handleClickLogOut}
                   >
                     Log out
                   </button>
