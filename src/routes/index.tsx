@@ -3,6 +3,7 @@ import Login from "../pages/login/Login";
 import Home from "../pages/home/home";
 import { useUserContext } from "../context/UserContext";
 import ProtectedRoute from "./ProtectedRoute";
+import NotFound from "../pages/notpage/NotFound";
 
 export const Router = () => {
   const { user } = useUserContext();
@@ -13,10 +14,7 @@ export const Router = () => {
         <Route
           path="/"
           element={
-            <ProtectedRoute
-              isAllowed={!user?.user?.token.length}
-              redirectTo="/home"
-            >
+            <ProtectedRoute isAllowed={!user?.token.length} redirectTo="/home">
               <Login />
             </ProtectedRoute>
           }
@@ -24,11 +22,12 @@ export const Router = () => {
         <Route
           path="/home"
           element={
-            <ProtectedRoute isAllowed={user?.user?.token.length} redirectTo="/">
+            <ProtectedRoute isAllowed={user?.token.length} redirectTo="/">
               <Home />
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
