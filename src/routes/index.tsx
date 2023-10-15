@@ -14,7 +14,7 @@ export const Router = () => {
         <Route
           path="/"
           element={
-            <ProtectedRoute isAllowed={!user?.token.length} redirectTo="/home">
+            <ProtectedRoute isAllowed={!user?.token} redirectTo="/home">
               <Login />
             </ProtectedRoute>
           }
@@ -22,7 +22,7 @@ export const Router = () => {
         <Route
           path="/home"
           element={
-            <ProtectedRoute isAllowed={user?.token.length} redirectTo="/">
+            <ProtectedRoute isAllowed={!!user?.token} redirectTo="/">
               <Home />
             </ProtectedRoute>
           }

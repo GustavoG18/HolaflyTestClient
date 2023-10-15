@@ -85,5 +85,5 @@ export interface DataComsuptionType {
 export interface ProtectedRouteType {
   isAllowed: boolean;
   redirectTo: string;
-  children: ChildNode;
+  children: React.ReactNode;
 }
