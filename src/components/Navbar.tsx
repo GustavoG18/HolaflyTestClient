@@ -4,6 +4,7 @@ import { useNavContext } from "../context/NavContext";
 import { useState } from "react";
 import { useUserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { User } from "../types";
 
 const navigation = [
   { name: "Active & Pendings", current: true },
@@ -21,7 +22,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleClickLogOut = () => {
-    setUser({});
+    setUser({} as User);
     localStorage.setItem("userData", JSON.stringify({}));
     navigate("/");
   };

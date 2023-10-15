@@ -1,16 +1,7 @@
-import { useEffect, useState } from "react";
-import calendar from "../assets/calendar.svg";
+import { CardDataTypes } from "../types";
+import ComsuptionIndex from "./ComsuptionIndex";
 
 const Card = ({ cardData }: CardDataTypes) => {
-  const [comsuption, setComsuption] = useState("");
-
-  useEffect(() => {
-    const day = cardData.plan.split(" ")[0];
-    setComsuption(day);
-    console.log("Look", comsuption);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <li className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow border-1 border-gray-400">
       <div
@@ -18,7 +9,7 @@ const Card = ({ cardData }: CardDataTypes) => {
           cardData.status === "expired" ? "items-start" : "items-center"
         } justify-between space-x-6 p-6 h-72 w-80`}
       >
-        <div className="flex space-x-8">
+        <div className="flex space-x-8 w-full">
           <div className="flex-1 truncate space-y-3">
             <div className="w-full h-10 flex items-center relative">
               <img
@@ -63,30 +54,13 @@ const Card = ({ cardData }: CardDataTypes) => {
               </p>
             )}
           </div>
-          {cardData.status === "pending" && (
-            <div className="flex-1 truncate relative">
-              <img width={200} src={calendar} alt="logo calendar" />
-              <div className="flex flex-col absolute top-12 left-9">
-                <b className="mt-1 truncate text-sm text-gray-700 text-center">
-                  0
-                </b>
-                <p className="mt-1 truncate text-sm text-gray-700">
-                  /{comsuption} days
-                </p>
-              </div>
-            </div>
-          )}
-          {cardData.status === "active" && (
-            <div className="flex-1 truncate relative">
-              <img width={200} src={calendar} alt="logo calendar" />
-              <div className="flex flex-col absolute top-12 left-9">
-                <b className="mt-1 truncate text-sm text-gray-700 text-center">
-                  0
-                </b>
-                <p className="mt-1 truncate text-sm text-gray-700">/4 days</p>
-              </div>
-            </div>
-          )}
+          <ComsuptionIndex
+            dataComsuption={{
+              status: cardData.status,
+              plan: cardData.plan,
+              comsuption: cardData.comsuption,
+            }}
+          />
         </div>
         <div
           className="flex flex-col space-y-2"
@@ -114,15 +88,3 @@ const Card = ({ cardData }: CardDataTypes) => {
 };
 
 export default Card;
-
-interface CardDataTypes {
-  cardData: {
-    status: string;
-    dateStart: string;
-    dateEnd: string;
-    comsuption: undefined;
-    flag: string;
-    country: string;
-    plan: string;
-  };
-}

@@ -1,6 +1,7 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
+import { NavContextProps } from "../types";
 
-const NavContext = createContext("");
+const NavContext = createContext<NavContextProps>({} as NavContextProps);
 
 export const NavProvider = ({ children }: PropsWithChildren) => {
   const [state, setState] = useState("active&pending");

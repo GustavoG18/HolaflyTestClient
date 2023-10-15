@@ -5,10 +5,22 @@ import { useUserContext } from "../../context/UserContext";
 import { useState } from "react";
 import Notification from "../../components/Notification";
 
+interface NotificationData {
+  show: boolean;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Values {
+  email: string;
+  password: string;
+}
+
 const Login = () => {
   const navigate = useNavigate();
   const { setUser } = useUserContext();
-  const [notificationData, setNotificationData] = useState<any>({
+  const [notificationData, setNotificationData] = useState<NotificationData>({
     show: false,
     title: "Successfull Login",
     description: "",
@@ -28,9 +40,9 @@ const Login = () => {
           description: "",
           icon: "success",
         });
-        localStorage.setItem("userData", JSON.stringify(data));
+        localStorage.setItem("userData", JSON.stringify(data.user));
         setUser({
-          ...data,
+          ...data.user,
         });
         navigate("/home");
       }
@@ -58,7 +70,7 @@ const Login = () => {
       <Notification
         notificationData={notificationData}
         setNotificationData={() => {
-          setNotificationData((prev: any) => {
+          setNotificationData((prev: NotificationData) => {
             return {
               ...prev,
               show: false,
@@ -125,23 +137,6 @@ const Login = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <input
-                        id="remember-me"
-                        name="remember-me"
-                        type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-rose-600 focus:ring-rose-600 accent-rose-600"
-                      />
-                      <label
-                        htmlFor="remember-me"
-                        className="ml-3 block text-sm leading-6 text-gray-700"
-                      >
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-
                   <div>
                     <button
                       type="submit"
@@ -168,8 +163,3 @@ const Login = () => {
 };
 
 export default Login;
-
-interface Values {
-  email: string;
-  password: string;
-}

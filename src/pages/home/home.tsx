@@ -5,11 +5,12 @@ import { useUserContext } from "../../context/UserContext";
 import { useNavContext } from "../../context/NavContext";
 import axios from "axios";
 import Loader from "../../components/Loader";
+import { Card } from "../../types";
 
 const Home = () => {
   const { user, setUser } = useUserContext();
   const { nav } = useNavContext();
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -27,14 +28,10 @@ const Home = () => {
             },
           }
         );
-        setUser((prev) => {
-          return {
-            ...prev,
-            cards: data,
-          };
-        });
+        const cloneUser = { ...user };
+        cloneUser.cards = data;
+        setUser(cloneUser);
         setLoading(false);
-        console.log("hola");
       } catch (error) {
         setLoading(false);
         console.error(error);
@@ -44,7 +41,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    let cardsFiltered = [];
+    let cardsFiltered: Card[] = [];
     if (nav === "active&pending") {
       cardsFiltered = user.cards.filter(
         ({ status }) => status === "pending" || status === "active"
@@ -54,7 +51,6 @@ const Home = () => {
       cardsFiltered = user.cards.filter(({ status }) => status === "expired");
     }
     setCards(cardsFiltered);
-    console.log("hola2");
   }, [nav]);
 
   return (

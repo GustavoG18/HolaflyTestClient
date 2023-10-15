@@ -1,6 +1,7 @@
+import { GridPropsType } from "../types";
 import Card from "./Card";
 
-const Grid = ({ cards }) => {
+const Grid = ({ cards }: GridPropsType) => {
   return (
     <ul
       role="list"
