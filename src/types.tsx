@@ -87,3 +87,15 @@ export interface ProtectedRouteType {
   redirectTo: string;
   children: React.ReactNode;
 }
+
+export interface NotificationData {
+  show: boolean;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface Values {
+  email: string;
+  password: string;
+}

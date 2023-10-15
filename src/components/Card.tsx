@@ -40,7 +40,7 @@ const Card = ({ cardData }: CardDataTypes) => {
             </p>
             {cardData.status === "expired" && (
               <p className="mt-1 truncate text-sm text-gray-700 font-semibold">
-                {cardData.dateStart}-{cardData.dateEnd}
+                {cardData.dateStart} - {cardData.dateEnd}
               </p>
             )}
             {cardData.status === "expired" && (

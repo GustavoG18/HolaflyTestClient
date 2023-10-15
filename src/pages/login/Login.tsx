@@ -4,18 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { useState } from "react";
 import Notification from "../../components/Notification";
-
-interface NotificationData {
-  show: boolean;
-  title: string;
-  description: string;
-  icon: string;
-}
-
-interface Values {
-  email: string;
-  password: string;
-}
+import { NotificationData, Values } from "../../types";
 
 const Login = () => {
   const navigate = useNavigate();
